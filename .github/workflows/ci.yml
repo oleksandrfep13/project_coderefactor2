@@ -1,0 +1,19 @@
+name: CI
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with: {python-version: '3.12'}
+      - name: Install dependencies
+        run: pip install pytest pytest-cov flet
+      - name: Run tests
+        run: pytest --cov=src --cov-report=xml
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage-report
+          path: coverage.xml

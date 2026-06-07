@@ -1,0 +1,7 @@
+echo ".venv/" > .gitignore
+echo "data.json" >> .gitignore
+echo "__pycache__/" >> .gitignore
+echo ".pytest_cache/" >> .gitignore
+echo "htmlcov/" >> .gitignore
+echo ".coverage" >> .gitignore
+echo "coverage.xml" >> .gitignore

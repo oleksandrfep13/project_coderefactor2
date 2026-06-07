@@ -6,12 +6,31 @@
 * **Мова:** Python 3.12+
 * **UI Framework:** Flet (Material Design)
 * **Тестування:** pytest, pytest-cov
-* **Аналіз якості:** SonarQube / SonarCloud
+* **Аналіз якості:** SonarCloud
 * **CI/CD:** GitHub Actions
 
-Діаграма класів:
-![img_1.png](img_1.png)
+## 🏗 Архітектура
+Проєкт побудований за принципами чистої архітектури:
+- **Domain:** Бізнес-сутності (HealthEntry, EntryType).
+- **Application:** Бізнес-логіка (HealthService, AnalyticsStrategy).
+- **Infrastructure:** Робота з даними (FileMoodRepository).
+- **UI:** Інтерфейс користувача (Flet).
 
+## 🚀 DevOps та CI/CD
+Проєкт інтегрований із SonarCloud для автоматичного контролю якості коду.
+- **Quality Gate:** Покриття коду >70%.
+- **Branch Protection:** Заборона злиття до гілки `main` без успішного проходження тестів.
 
-Поведінкова діаграма: 
-![img.png](img.png)
+### Локальне розгортання
+```bash
+# Клонування репозиторію
+git clone [https://github.com/oleksandrfep13/project_coderefactor2.git](https://github.com/oleksandrfep13/project_coderefactor2.git)
+cd project_coderefactor2
+
+# Створення віртуального середовища та встановлення залежностей
+python -m venv venv
+source venv/bin/activate  # Для Windows: venv\Scripts\activate
+pip install -r requirements.txt
+
+# Запуск тестів
+pytest

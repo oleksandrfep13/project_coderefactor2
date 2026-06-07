@@ -12,7 +12,6 @@ from src.domain.models import EntryType, HealthEntry
 def reminder_worker(page):
     while True:
         now = datetime.now()
-        # Для перевірки працездатності: кожні 30 секунд (замість 20:00)
         if now.hour == 20 and now.minute == 0:
             page.show_snack_bar(ft.SnackBar(ft.Text("Час заповнити щоденник!")))
             page.update()
@@ -22,7 +21,6 @@ def reminder_worker(page):
 
 
 def main(page: ft.Page):
-    # Очищуємо сторінку при кожному виклику main, щоб уникнути нашарування
     page.clean()
 
     page.title = "Мій щоденник"
@@ -115,7 +113,6 @@ def main(page: ft.Page):
         )
         page.update()
 
-    # Початковий вигляд головної сторінки
     page.add(
         ft.Row([
             ft.TextButton("Попередня", on_click=lambda e: update_date(-1)),

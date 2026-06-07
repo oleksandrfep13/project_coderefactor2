@@ -48,4 +48,3 @@ jobs:
             -Dsonar.sources=src
             -Dsonar.tests=tests
             -Dsonar.python.version=3.12
-            

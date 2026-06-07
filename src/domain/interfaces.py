@@ -2,7 +2,7 @@ from abc import ABC, abstractmethod
 from typing import List, Optional
 from .models import HealthEntry
 
-class IMoodRepository(ABC): # Назву інтерфейсу можна залишити для сумісності
+class IMoodRepository(ABC):
     @abstractmethod
     def add(self, record: HealthEntry) -> None: # І тут
         pass

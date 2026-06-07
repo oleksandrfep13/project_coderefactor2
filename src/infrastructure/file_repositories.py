@@ -11,7 +11,6 @@ class FileMoodRepository(IMoodRepository):
 
     def add(self, record: HealthEntry) -> None:
         records = self.get_all()
-        # Шукаємо, чи існує вже запис такого ж типу для такої ж дати
         existing_index = next(
             (i for i, r in enumerate(records)
              if r.entry_type == record.entry_type and r.timestamp.date() == record.timestamp.date()),
@@ -19,13 +18,10 @@ class FileMoodRepository(IMoodRepository):
         )
 
         if existing_index is not None:
-            # Якщо запис є — оновлюємо його
             records[existing_index] = record
         else:
-            # Якщо немає — додаємо новий
             records.append(record)
 
-        # Зберігаємо оновлений список
         with open(self.file_path, 'w') as f:
             data = [
                 {

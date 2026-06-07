@@ -8,3 +8,10 @@
 * **Тестування:** pytest, pytest-cov
 * **Аналіз якості:** SonarQube / SonarCloud
 * **CI/CD:** GitHub Actions
+
+Діаграма класів:
+![img_1.png](img_1.png)
+
+
+Поведінкова діаграма: 
+![img.png](img.png)

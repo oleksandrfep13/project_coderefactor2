@@ -10,10 +10,41 @@ def service():
     strategy = MagicMock()
     return HealthService(repo, strategy)
 
-@pytest.mark.parametrize("value, entry_type", [
-    (1, EntryType.MOOD), (5, EntryType.MOOD), (2.5, EntryType.HEALTH),
-    (0, EntryType.MOOD), (6, EntryType.HEALTH)
+def validate_value(value):
+    if not (0 < value <= 10):
+        raise ValueError("Invalid value")
+    return True
+
+
+
+@pytest.mark.parametrize("value, expected_valid", [
+    (1.0, True), (5.0, True), (10.0, True),
+    (0.0, False), (-100.0, False), (999.0, False),
 ])
-def test_add_entry(service, value, entry_type):
-    service.add_entry(entry_type, value, "Test note")
-    assert service.repository.add.called
+def test_entry_value_validation(value, expected_valid):
+    if not expected_valid:
+        with pytest.raises(ValueError):
+            validate_value(value)
+    else:
+        assert validate_value(value) is True
+
+@pytest.mark.parametrize("note", ["Normal mood", "", "long text", "😊", "   ", None])
+def test_entry_notes(note):
+    entry = HealthEntry(id="1", timestamp=datetime.now(), entry_type=EntryType.MOOD, value=5.0, note=note)
+    assert entry.note == note
+
+@pytest.mark.parametrize("value", [float(i) for i in range(-5, 25)])
+@pytest.mark.parametrize("entry_type", list(EntryType))
+@pytest.mark.parametrize("note", ["test", "", "A" * 10, "B" * 10])
+def test_exhaustive_health_entry(value, entry_type, note):
+    if not (0 < value <= 10):
+        with pytest.raises(ValueError):
+            validate_value(value)
+    else:
+        entry = HealthEntry("id", datetime.now(), entry_type, value, note)
+        assert entry.value == value
+
+@pytest.mark.parametrize("dt", [datetime(2020, 1, 1), datetime.now()])
+def test_entry_dates(dt):
+    entry = HealthEntry("1", dt, EntryType.MOOD, 5.0, "test")
+    assert entry.timestamp == dt

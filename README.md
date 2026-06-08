@@ -2,21 +2,21 @@
 
 Цей проєкт — аналітичний застосунок для відстеження стану здоров'я та настрою користувача. Проєкт реалізований з дотриманням принципів Clean Architecture, SOLID та використанням автоматизованих тестів.
 
-## 🛠 Технології
+## Технології
 * **Мова:** Python 3.12+
 * **UI Framework:** Flet (Material Design)
 * **Тестування:** pytest, pytest-cov
 * **Аналіз якості:** SonarCloud
 * **CI/CD:** GitHub Actions
 
-## 🏗 Архітектура
+## Архітектура
 Проєкт побудований за принципами чистої архітектури:
 - **Domain:** Бізнес-сутності (HealthEntry, EntryType).
 - **Application:** Бізнес-логіка (HealthService, AnalyticsStrategy).
 - **Infrastructure:** Робота з даними (FileMoodRepository).
 - **UI:** Інтерфейс користувача (Flet).
 
-## 🚀 DevOps та CI/CD
+## DevOps та CI/CD
 Проєкт інтегрований із SonarCloud для автоматичного контролю якості коду.
 - **Quality Gate:** Покриття коду >70%.
 - **Branch Protection:** Заборона злиття до гілки `main` без успішного проходження тестів.

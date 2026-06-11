@@ -28,7 +28,7 @@ class RecentTrendStrategy(IAnalyticsStrategy):
             return 0.0
 
         now = datetime.now()
-        time_limit = timedelta(days=7)
+        time_limit = timedelta(days=7, seconds=1)
 
         recent_entries = [
             e for e in entries

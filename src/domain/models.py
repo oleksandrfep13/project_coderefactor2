@@ -15,3 +15,10 @@ class HealthEntry:
     value: float
     note: str
     metadata: dict = field(default_factory=dict)
+
+@dataclass
+class Reminder:
+    id: str
+    text: str
+    due_date: datetime
+    is_completed: bool = False

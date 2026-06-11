@@ -42,7 +42,7 @@ class FileMoodRepository(IMoodRepository):
             return [
                 HealthEntry(
                     id=r['id'],
-                    timestamp=datetime.fromisoformat(r['timestamp']),  # Перетворюємо рядок назад у дату
+                    timestamp=datetime.fromisoformat(r['timestamp']),
                     entry_type=EntryType(r['type']),
                     value=r['value'],
                     note=r['note']
@@ -52,7 +52,6 @@ class FileMoodRepository(IMoodRepository):
     def get_by_id(self, record_id: str) -> Optional[HealthEntry]:
         return next((r for r in self.get_all() if r.id == record_id), None)
 
-
-    def get_by_date(self, date: datetime) -> List[HealthEntry]:
-        all_records = self.get_all()
-        return [r for r in all_records if r.timestamp.date() == date.date()]
+    def get_by_date(self, target_date: datetime) -> List[HealthEntry]:
+        target = target_date.date() if isinstance(target_date, datetime) else target_date
+        return [e for e in self.get_all() if e.timestamp.date() == target]
